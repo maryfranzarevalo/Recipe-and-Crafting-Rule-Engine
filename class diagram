@@ -1,0 +1,93 @@
++-------------------+
+|      Item         |
++-------------------+
+| - itemId: String  |
+| - name: String    |
+| - type: String    |
++-------------------+
+| + getDetails()    |
++-------------------+
+
+          ▲
+          |
+          |
++------------------------+
+|      Ingredient        |
++------------------------+
+| - quantity: int        |
++------------------------+
+
+--------------------------------------------
+
++------------------------+
+|        Recipe          |
++------------------------+
+| - recipeId: String     |
+| - name: String         |
+| - isReversible: bool   |
++------------------------+
+| + validate()           |
+| + getIngredients()     |
++------------------------+
+
+Recipe "1" ------ "many" Ingredient
+Recipe "1" ------ "1" Item (output)
+
+--------------------------------------------
+
++-----------------------------+
+|    CraftingConstraint       |
++-----------------------------+
+| - toolRequired: String      |
+| - timeRequired: int         |
+| - sequenceOrder: int        |
++-----------------------------+
+| + checkConstraint()         |
++-----------------------------+
+
+Recipe "1" ------ "many" CraftingConstraint
+
+--------------------------------------------
+
++-----------------------------+
+|      Inventory              |
++-----------------------------+
+| - items: List<Item>         |
++-----------------------------+
+| + addItem()                 |
+| + removeItem()              |
+| + hasItem()                 |
++-----------------------------+
+
+--------------------------------------------
+
++-----------------------------+
+|    CraftingEngine           |
++-----------------------------+
+| - recipes: List<Recipe>     |
+| - inventory: Inventory      |
++-----------------------------+
+| + craft(recipeId)           |
+| + validateRecipe()          |
+| + resolveDependencies()     |
++-----------------------------+
+
+CraftingEngine --> Recipe
+CraftingEngine --> Inventory
+
+--------------------------------------------
+
++-----------------------------+
+|    CraftingResult           |
++-----------------------------+
+| - success: bool             |
+| - message: String           |
+| - steps: List<String>       |
++-----------------------------+
+| + getSummary()              |
++-----------------------------+
+
+CraftingEngine --> CraftingResult
+
+
+
