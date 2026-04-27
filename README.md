@@ -53,7 +53,7 @@ classDiagram
         + getSummary() string
     }
 
-    class User {
+    class Owner {
         - string username
         + createRecipe()
         + craftItem(Recipe recipe)
@@ -66,8 +66,9 @@ classDiagram
     CraftingEngine --> Recipe : uses
     CraftingEngine --> Inventory : manages
     CraftingEngine --> CraftingResult : returns
-    User --> Recipe : creates
-    User --> CraftingEngine : uses
+    Owner --> Recipe : creates
+    Owner --> CraftingEngine : uses
+
 
 
 ```
