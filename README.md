@@ -37,3 +37,33 @@ flowchart TD
     classDef inheritArrow stroke:#6b7280,fill:none
     classDef relationArrow stroke:#9ca3af,fill:none
 ```
+```mermaid
+sequenceDiagram
+    participant O as Owner
+    participant CE as CraftingEngine
+    participant R as Recipe
+    participant C as CraftingConstraint
+    participant I as Inventory
+    participant CR as CraftingResult
+
+    P->>CE: craft(recipeId)
+    CE->>R: validate()
+    R-->>CE: Recipe valid
+
+    CE->>R: getIngredients()
+    R-->>CE: List of Ingredients
+
+    CE->>I: hasItem(Ingredients)
+    I-->>CE: Materials available
+
+    CE->>C: checkConstraint()
+    C-->>CE: Constraints satisfied
+
+    CE->>I: removeItem(Ingredients)
+    I-->>CE: Materials consumed
+
+    CE->>CR: Create CraftingResult(success, message, steps)
+    CR-->>P: getSummary()
+
+
+```
